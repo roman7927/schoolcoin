@@ -7,6 +7,7 @@
 #include <vector>
 #include <map>
 #include <ctime>
+#include <algorithm>
 #include "sha256.h"
 
 using namespace std;
