@@ -1,6 +1,9 @@
 ROMAN 1 b8:27:eb:12:df:59 (3.45.48.66)
+
 ROMAN 2 b8:27:eb:a6:d0:85 (3.45.48.67)
+
 DIMA  1 b8:27:eb:f6:62:a9 (3.45.48.62)
+
 
 Links:
 * http://raspnode.com/diyBitcoin.html
