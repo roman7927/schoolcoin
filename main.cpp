@@ -8,6 +8,7 @@
 #include <map>
 #include <ctime>
 #include <algorithm>
+#include <winsock2.h>
 #include "sha256.h"
 
 using namespace std;
