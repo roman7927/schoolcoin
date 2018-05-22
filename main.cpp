@@ -8,8 +8,20 @@
 #include <map>
 #include <ctime>
 #include <algorithm>
-#include <winsock2.h>
 #include "sha256.h"
+
+// Libraries that we found for networking
+// http://www.science.smith.edu/dftwiki/index.php/Tutorial:_Client/Server_on_the_Raspberry_Pi
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
+
 
 using namespace std;
 
