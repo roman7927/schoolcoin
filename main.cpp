@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
+#include <strings.h>
 #include <vector>
 #include <map>
 #include <ctime>
