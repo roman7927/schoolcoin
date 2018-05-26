@@ -3,25 +3,21 @@
 // continue with section "Storing the blockchain"
 
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string>
 #include <vector>
 #include <map>
 #include <ctime>
 #include <algorithm>
 #include "sha256.h"
+#include "client.h"
 
-// Libraries that we found for networking
-// http://www.science.smith.edu/dftwiki/index.php/Tutorial:_Client/Server_on_the_Raspberry_Pi
-#include <stdio.h>
+// Networking
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <netdb.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-
+#include <arpa/inet.h>
 
 using namespace std;
 
@@ -254,6 +250,60 @@ int BlockChain::getHeight() {
 }
 
 int main() {
+
+    int sSocket;
+    int sSocketListen;
+    int sSocketAccept;
+    int sRemoteSocket;
+    unsigned int len = sizeof(sockaddr_in);
+    struct sockaddr_in sSocketAddr;
+    struct sockaddr_in sRemoteSocketAddr;
+    char sMessage[] = "Welcome!";
+    int sSent, sRcvd = 0;
+    struct in_addr addr;
+
+    if ((sSocket = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
+        cout << "Error creating a socket..." << endl;
+        return -1;
+    }
+
+    sSocketAddr.sin_family = AF_INET;
+    sSocketAddr.sin_port = htons(84);
+    sSocketAddr.sin_addr.s_addr = inet_aton("003.045.048.067", &addr);
+    bzero(&sSocketAddr.sin_zero,8);
+
+    bind(sSocket, (struct sockaddr*) &sSocketAddr, len);
+
+    if ((sSocketListen = listen(sSocket, 5)) == -1) {
+        cout << "Error listening on server port " << sSocketAddr.sin_port << endl;
+        return -1;
+    }
+
+    while (1) {
+
+        cout << "test1" << endl;
+
+        sRemoteSocket = accept(sSocket, (struct sockaddr*) &sRemoteSocketAddr, &len);
+
+        cout << "test2" << endl;
+
+        if (sRemoteSocket == -1) {
+            cout << "Error accepting on server port " << sSocketAddr.sin_port << endl;
+            return -1;
+        }
+
+        sSent = send(sRemoteSocket, sMessage, strlen(sMessage), 0);
+
+        cout << "Sent " << sSent << " bytes to client " << inet_ntoa(sRemoteSocketAddr.sin_addr) << endl;
+
+        //close(sRemoteSocket);
+    }
+
+
+
+    return 0;
+
+    test();
 
     BlockChain ourCoin(4,1);
 

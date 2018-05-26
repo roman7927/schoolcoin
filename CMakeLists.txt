@@ -3,4 +3,4 @@ project(schoolcoin)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(schoolcoin main.cpp sha256.cpp sha256.h)
+add_executable(schoolcoin main.cpp sha256.cpp sha256.h client.cpp client.h)
