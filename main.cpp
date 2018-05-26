@@ -270,7 +270,7 @@ int main() {
     }
 
     sSocketAddr.sin_family = AF_INET;
-    sSocketAddr.sin_port = 84;
+    sSocketAddr.sin_port = htons(84);
     sSocketAddr.sin_addr.s_addr = INADDR_ANY;
     bzero(&sSocketAddr.sin_zero,8);
 
